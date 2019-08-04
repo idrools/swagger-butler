@@ -9,7 +9,7 @@ import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SwaggerResourcesProcessor implements SwaggerResourcesProvider {
+public class SwaggerResourcesZuulProcessor implements SwaggerResourcesProvider {
 
     @Autowired
     private RouteLocator routeLocator;

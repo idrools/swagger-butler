@@ -39,6 +39,7 @@ public class SwaggerButlerProperties {
      * 为Zuul中的Routes自动生成API文档
      */
     private Boolean autoGenerateFromZuulRoutes = false;
+    private Boolean autoGenerateFromGateWayRoutes = false;
 
     /**
      * 不自动生成文档的路由名称，设置了ignoreRoutes之后，generateRoutes不生效（需要autoGenerateFromZuulRoutes=true）

@@ -1,9 +1,11 @@
 package com.didispace.swagger.butler;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
@@ -18,9 +20,16 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerButlerAutoConfig {
 
     @Bean
+    @ConditionalOnProperty(name = {"swagger.butler.mode"}, havingValue = "zuul")
     @Primary
-    public SwaggerResourcesProcessor swaggerResourcesProcessor() {
-        return new SwaggerResourcesProcessor();
+    public SwaggerResourcesProvider swaggerResourcesProcessor() {
+        return new SwaggerResourcesZuulProcessor();
+    }
+    @Bean
+    @ConditionalOnProperty(name = {"swagger.butler.mode"}, havingValue = "gateway")
+    @Primary
+    public SwaggerResourcesProvider swaggerResourcesGatewayProcessor() {
+        return new SwaggerResourcesGatewayProcessor();
     }
 
 }
